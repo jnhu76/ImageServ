@@ -11,7 +11,6 @@ class Images(models.Model):
     storename = fields.CharField(null=False, max_length=120)
     content_type = fields.CharField(null=False, max_length=50)
     hash = fields.CharField(null=False, index=True, unique=True, max_length=120)
-    fingerprints = fields.JSONField(null=True)
     path = fields.CharField(null=False, max_length=120)
     created_at = fields.DatetimeField(auto_now_add=True)
 

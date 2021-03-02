@@ -32,9 +32,7 @@ def get_unique_name(filename: str) -> str:
     return uuid.uuid4().hex + file_extension
 
 
-def get_hash(file: IO):
-    image = Image.open(file)
-    dh = str(dhash(image))
-    ph = str(phash(image))
 
-    return json.dumps({"dhash": dh, "phash": ph})
+async def get_file(filename: str) -> bytes:
+    async with aiofiles.open("{0}/{1}".format(STORE_PATH, filename), "rb") as out_file:
+        return await out_file.read()
