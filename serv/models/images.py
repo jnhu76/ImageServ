@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from tortoise import fields, models
 
 
@@ -11,6 +9,7 @@ class Images(models.Model):
     storename = fields.CharField(null=False, max_length=120)
     content_type = fields.CharField(null=False, max_length=50)
     hash = fields.CharField(null=False, index=True, unique=True, max_length=120)
+    info = fields.JSONField(null=False)
     path = fields.CharField(null=False, max_length=120)
     created_at = fields.DatetimeField(auto_now_add=True)
 

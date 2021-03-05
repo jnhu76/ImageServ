@@ -1,7 +1,31 @@
-# 图像处理脚手架
+# 图像处理
 
 使用 fastapi 和 tortoise-orm 框架搭建的图像api服务，后续将设计成图像处理服务和图像搜索服务。
 
+## 图像处理
+
+1. 图像信息
+
+   ```python
+   info = {
+     "width": 124,
+     "height": 323,
+     "size": 1221,
+     "format": "jpeg",
+     "quanlity": 80
+   }
+   ```
+
+2. 图像处理
+
+   - rotate
+   - size -> width, height
+     - p=1, 等比例
+     - p=2, 手动处理
+     - p=3, 百分比缩放
+   - format: png, jpeg, git, webp
+   - quality
+   
 
 ## TODO
 

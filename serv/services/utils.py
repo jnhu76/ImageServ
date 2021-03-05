@@ -1,15 +1,11 @@
 import hashlib
-import io
-import json
 import os
 import uuid
 from typing import IO
 
 import aiofiles
-from PIL import Image
 
-from search.core.config import STORE_PATH
-from search.services.imagehash import dhash, phash
+from serv.core.config import STORE_PATH
 
 
 def get_md5(file: IO) -> str:

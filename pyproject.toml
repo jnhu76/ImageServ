@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "imagebase"
+name = "imageServ"
 version = "0.1.0"
-description = "image processing"
+description = "image process"
 authors = ["Hoo"]
 license = "MIT"
 
@@ -31,15 +31,11 @@ asynctest = "^0.13.0"
 flake8 = "^3.8.4"
 isort = "^5.7.0"
 
-[[tool.poetry.source]]
-name = "tsinghua"
-url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple/"
-default = true  # 设置清华镜像为默认回调, 以避免 poetry 在某些缺省操作里又回调到 pypi
-
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.isort]
-profile = "black"
-known_third_party = ["fastapi", "pydantic", "starlette"]
+[[tool.poetry.source]]
+name = "tsinghua"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+default = true  # 设置清华镜像为默认回调, 以避免 poetry 在某些缺省操作里又回调到 pypi
