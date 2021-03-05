@@ -25,8 +25,6 @@
 
 * Image Storage
 
-[Back To Top][top]
-
 # Quick Start
 
 1.  Start service
@@ -35,15 +33,11 @@
      uvicorn serv.main:app
     ```
 
-[Back To Top][top]
-
 # Roadmap
 
 1. 添加缓存支持和HTTP Raw POST。
 
 2. 添加多种Object Storage 支持。
-
-[Back To Top][top]
 
 # License
 
