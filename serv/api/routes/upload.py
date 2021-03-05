@@ -1,11 +1,13 @@
-from fastapi import APIRouter, File, HTTPException, UploadFile
-from typing import List
 import json
+from typing import List
+
+from fastapi import APIRouter, File, HTTPException, UploadFile
+
 from serv.core.config import STORE_PATH
 from serv.models.images import Images
 from serv.models.views import Image_Info_Pydantic
-from serv.services.utils import get_md5, get_unique_name, save_file
 from serv.services.processing import get_info
+from serv.services.utils import get_md5, get_unique_name, save_file
 
 router = APIRouter()
 

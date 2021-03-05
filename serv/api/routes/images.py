@@ -1,13 +1,13 @@
 import io
 
 from fastapi import APIRouter, HTTPException
-from starlette.responses import FileResponse, StreamingResponse
+from starlette.responses import StreamingResponse
 
-from serv.core.config import STORE_PATH
 from serv.models.images import Images
 from serv.models.views import Image_Pydantic
-from serv.services.utils import get_file
-from serv.services.processing import get_image_obj, rotate, resize, set_format, save_image
+from serv.services.processing import (get_image_obj, resize, rotate,
+                                      save_image, set_format)
+
 
 router = APIRouter()
 
@@ -25,7 +25,7 @@ async def get_image(image_hash: str, p: int = 1, w: int = 1, h: int = 1, r: int 
         raise HTTPException(status_code=404, detail="image not found")
     image = processing(img.storename, p, w, h, r, q, f)
     image.seek(0)
-    return StreamingResponse(image, media_type=img.content_type)
+    return StreamingResponse(image, media_type="image/{0}".format(f.lower()))
 
 
 def processing(filename: str, p: int = 0, w: int = 0,

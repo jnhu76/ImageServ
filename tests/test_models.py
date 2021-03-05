@@ -3,10 +3,9 @@ from typing import Generator
 
 import pytest
 from fastapi.testclient import TestClient
+from serv.main import app
+from serv.models.images import Images
 from tortoise.contrib.test import finalizer, initializer
-
-from search.main import app
-from search.models.images import Images
 
 # @pytest.fixture(scope="module")
 # def client() -> Generator:

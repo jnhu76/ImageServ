@@ -1,8 +1,9 @@
 import io
+from typing import IO, Dict, Optional
+
 from PIL import Image
 
 from serv.core.config import STORE_PATH
-from typing import Dict, IO, Optional
 
 
 def resize(image: Image.Image, mode: int = 1, width: Optional[int] = -1, height: Optional[int] = -1) -> Image.Image:
@@ -24,12 +25,12 @@ def rotate(image: Image.Image, r: int = 45) -> Image.Image:
 
 
 def get_info(file: IO) -> Dict:
-    img = get_image_obj(file)
+    image = Image.open(file)
     return {
-        "size": img.size,
-        "width": img.width,
-        "height": img.height,
-        "format": img.format,
+        "size": image.size,
+        "width": image.width,
+        "height": image.height,
+        "format": image.format,
     }
 
 
@@ -40,7 +41,6 @@ def get_image_obj(filename: str) -> Image.Image:
 def save_image(image: Image.Image, image_format: str = "JPEG", quality: int = 75) -> io.BytesIO:
     byte_io = io.BytesIO()
     image.save(byte_io, format="JPEG", quality=quality)
-    byte_io.seek(0)
     return byte_io
 
 
