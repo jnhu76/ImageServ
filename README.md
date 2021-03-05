@@ -1,35 +1,72 @@
-# 图像处理
+<div align="center" id="top">
+       <h1>Image Serv</h1>
+       <h5>Image Service Online.</h5>
+   <p>
+       <b>Image Serv</b> is a online image services.
+   </p>     
+</div> 
+  
+# Table Of Contents
 
-使用 fastapi 和 tortoise-orm 框架搭建的图像api服务，后续将设计成图像处理服务和图像搜索服务。
+*   [Features](#features)
 
-## 图像处理
+*   [Quick Start](#quick-start)
 
-1. 图像信息
+*   [Usage](#usage)
 
-   ```python
-   info = {
-     "width": 124,
-     "height": 323,
-     "size": 1221,
-     "format": "jpeg",
-     "quanlity": 80
-   }
-   ```
+*   [Roadmap](#roadmap)
 
-2. 图像处理
+*   [License](#license)
 
-   - rotate
-   - size -> width, height
-     - p=1, 等比例
-     - p=2, 手动处理
-     - p=3, 百分比缩放
-   - format: png, jpeg, git, webp
-   - quality
+
+# Features
+
+* On-time Image Processing
+
+* Image Storage
+
+[Back To Top][top]
+
+# Quick Start
+
+1.  Start service
    
+    ```shell script
+     uvicorn serv.main:app
+    ```
 
-## TODO
+[Back To Top][top]
 
-- [ ] 添加 redis，从参考[这一篇](https://blog.csdn.net/wgPython/article/details/107668521)
-- [ ] 添加图像处理
-- [ ] 添加celery
-- [ ] 添加 dhash 计算
+# Roadmap
+
+1. 添加缓存支持和HTTP Raw POST。
+
+2. 添加多种Object Storage 支持。
+
+[Back To Top][top]
+
+# License
+
+```
+MIT License
+
+Copyright (c) 2021 jm.hu
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
