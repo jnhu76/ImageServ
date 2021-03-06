@@ -18,7 +18,7 @@ async def hello_world():
 
 
 @router.get("/{image_hash}")
-async def get_image(image_hash: str, p: int = 1, w: int = 1, h: int = 1, r: int = 360, q: int = 75, f: str = "PNG"):
+async def get_image(image_hash: str, p: int = 0, w: int = 1, h: int = 1, r: int = 360, q: int = 75, f: str = "PNG"):
     try:
         img = await Image_Pydantic.from_queryset_single(Images.get(hash=image_hash))
     except Exception as e:
