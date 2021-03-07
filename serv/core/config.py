@@ -20,7 +20,7 @@ DEBUG: bool = config("DEBUG", cast=bool, default=True)
 # DATABASE
 DATABASE: str = config("DB_CONNECTION", cast=str, default="sqlite://./test.db")
 
-SECRET_KEY: Secret = config("SECRET_KEY", cast=Secret)
+SECRET_KEY: Secret = config("SECRET_KEY", cast=Secret, default="Secret")
 
 PROJECT_NAME: str = config("PROJECT_NAME", default="FastAPI example application")
 ALLOWED_HOSTS: List[str] = config(
