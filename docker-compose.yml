@@ -6,7 +6,7 @@ services:
         image: fred1653/imageserv
         container_name: serv
         depends_on: 
-            postgres:
+            - postgres:
                 condition: service_healthy
         ports:
             - 80:8000
