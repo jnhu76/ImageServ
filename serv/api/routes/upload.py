@@ -3,7 +3,7 @@ from typing import List
 
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
-from serv.core.config import STORE_PATH
+from serv.core.config import settings
 from serv.models.images import Images
 from serv.models.views import Image_Info_Pydantic
 from serv.services.processing import get_info
@@ -39,5 +39,5 @@ async def save_image(file: UploadFile, file_hash: str):
         hash=file_hash,
         info=json.dumps(get_info(file.file)),
         content_type=file.content_type,
-        path=STORE_PATH,
+        path=settings.STORE_PATH,
     )

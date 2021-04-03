@@ -3,7 +3,7 @@ from typing import IO, Dict, Optional
 
 from PIL import Image, ImageFilter
 
-from serv.core.config import STORE_PATH
+from serv.core.config import settings
 
 
 def resize(image: Image.Image, mode: int = 1, width: Optional[int] = -1, height: Optional[int] = -1) -> Image.Image:
@@ -48,7 +48,7 @@ def get_info(file: IO) -> Dict:
 
 
 def get_image_obj(filename: str) -> Image.Image:
-    return Image.open("{0}/{1}".format(STORE_PATH, filename))
+    return Image.open("{0}/{1}".format(settings.STORE_PATH, filename))
 
 
 def save_image(image: Image.Image, image_format: str = "JPEG", quality: int = 75) -> io.BytesIO:
