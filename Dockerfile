@@ -1,20 +1,15 @@
-FROM python:3.8.1-slim
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.8
 
-ENV PYTHONUNBUFFERED 1
+LABEL maintainer="Bxtx <me@hoooo.org>"
 
-EXPOSE 8000
-WORKDIR /serv
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | POETRY_HOME=/opt/poetry python && \
+    cd /usr/local/bin && \
+    ln -s /opt/poetry/bin/poetry && \
+    poetry config virtualenvs.create false
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends netcat python3-dev python3-pip && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Copy using poetry.lock* in case it doesn't exist yet
+COPY ./pyproject.toml ./poetry.lock* /serv/
 
-COPY poetry.lock pyproject.toml ./
-RUN pip3 install poetry==1.1 && \
-    poetry config virtualenvs.in-project true && \
-    poetry install --no-dev
+RUN poetry install --no-root --no-dev
 
-COPY . ./
-
-CMD poetry run alembic upgrade head && \
-    poetry run uvicorn --host=0.0.0.0 serv.main:app
+COPY ./serv /serv
