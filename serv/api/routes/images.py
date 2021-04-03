@@ -45,4 +45,3 @@ def processing(filename: str, p: int = 0, w: int = 0,
         image = grey(image)
     image_format = set_format(f)
     return save_image(image=image, image_format=image_format, quality=q)
-
