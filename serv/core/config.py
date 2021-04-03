@@ -36,7 +36,7 @@ ALLOWED_HOSTS: List[str] = config(
 # ALLOWED_HOSTS: List[str] = [""]
 
 # store path
-STORE_PATH: str = config("STORE_PATH", cast=str, default="/data/images")
+STORE_PATH: str = config("STORE_PATH", cast=str, default="/app/images")
 
 
 # logging configuration
