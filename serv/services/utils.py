@@ -5,7 +5,7 @@ from typing import IO
 
 import aiofiles
 
-from serv.core.config import settings
+from serv.core.config import STORE_PATH
 
 
 def get_md5(file: IO) -> str:
@@ -16,7 +16,7 @@ def get_md5(file: IO) -> str:
 
 
 async def save_file(file: IO, filename: str) -> bool:
-    async with aiofiles.open("{0}/{1}".format(settings.STORE_PATH, filename), "wb") as out_file:
+    async with aiofiles.open("{0}/{1}".format(STORE_PATH, filename), "wb") as out_file:
         file.seek(0)
         content = file.read()
         await out_file.write(content)
@@ -30,5 +30,5 @@ def get_unique_name(filename: str) -> str:
 
 
 async def get_file(filename: str) -> bytes:
-    async with aiofiles.open("{0}/{1}".format(settings.STORE_PATH, filename), "rb") as out_file:
+    async with aiofiles.open("{0}/{1}".format(STORE_PATH, filename), "rb") as out_file:
         return await out_file.read()
