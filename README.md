@@ -27,6 +27,12 @@
 
 # Quick Start
 
+1. Get Requirements.txt
+
+   ```shell script
+    poetry export -f requirements.txt --output requirements.txt --without-hashes
+   ```
+
 1.  Start service
    
     ```shell script

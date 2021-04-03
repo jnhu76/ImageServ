@@ -15,6 +15,7 @@ services:
             - ~/images:/app/images
         environment:
             MODULE_NAME: serv.main
+            WEB_CONCURRENCY: 4
     postgres:
         restart: always
         image: postgres:13
