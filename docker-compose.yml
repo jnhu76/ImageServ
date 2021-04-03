@@ -12,7 +12,7 @@ services:
         links:
             - postgres
         volumes: 
-            - ~/imageserv_data:/data/images
+            - ~/images:/app/images
         environment:
             MODULE_NAME: serv.main
     postgres:
