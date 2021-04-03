@@ -17,6 +17,8 @@ RUN pip3 install poetry==1.1 && \
 COPY . ./
 
 ADD .env.example /app/.env
+ADD .env.example ./.env
+ADD .env.example /app/serv/.env
 
 CMD poetry run alembic upgrade head && \
     poetry run uvicorn --host=0.0.0.0 serv.main:app
