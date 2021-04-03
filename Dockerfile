@@ -14,11 +14,9 @@ RUN pip3 install poetry==1.1 && \
     poetry config virtualenvs.in-project true && \
     poetry install --no-dev
 
-COPY . ./
+COPY ./serv /app/serv
 
-ADD .env.example /app/.env
-ADD .env.example ./.env
-ADD .env.example /app/serv/.env
+COPY .env.example /app/.env
 
 CMD poetry run alembic upgrade head && \
     poetry run uvicorn --host=0.0.0.0 serv.main:app
