@@ -2,7 +2,7 @@
        <h1>Image Serv</h1>
        <h5>Image Service Online.</h5>
    <p>
-       <b>Image Serv</b> is a online image services.
+       <b>Image Serv</b> is 在线图片服务。
    </p>     
 </div> 
   

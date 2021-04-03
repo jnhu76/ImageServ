@@ -1,7 +1,7 @@
 import io
 from typing import IO, Dict, Optional
 
-from PIL import Image
+from PIL import Image, ImageFilter
 
 from serv.core.config import STORE_PATH
 
@@ -24,6 +24,19 @@ def rotate(image: Image.Image, r: int = 45) -> Image.Image:
     return image.rotate(r)
 
 
+def grey(image: Image.Image) -> Image.Image:
+    return image.convert("LA")
+
+
+def blur(image: Image.Image, t: int = 1, b: int = 1) -> Image.Image:
+    if t == 1:
+        return image.format(ImageFilter.BLUR)
+    elif t == 2:
+        return image.filter(ImageFilter.BoxBlur(b))
+    else:
+        return image.filter(ImageFilter.GaussianBlur(b))
+
+
 def get_info(file: IO) -> Dict:
     image = Image.open(file)
     return {
@@ -40,7 +53,7 @@ def get_image_obj(filename: str) -> Image.Image:
 
 def save_image(image: Image.Image, image_format: str = "JPEG", quality: int = 75) -> io.BytesIO:
     byte_io = io.BytesIO()
-    image.save(byte_io, format="JPEG", quality=quality)
+    image.save(byte_io, format=image_format, quality=quality)
     return byte_io
 
 
