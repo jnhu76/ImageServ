@@ -6,7 +6,7 @@ from tortoise.contrib.fastapi import register_tortoise
 
 from serv.api.errors import http422_error_handler, http_error_handler
 from serv.api.routes.api import router as api_router
-from serv.core.config import settings
+from serv.core.config import ALLOWED_HOSTS, API_PREFIX, DATABASE
 from serv.core.events import create_start_app_handler, create_stop_app_handler
 
 
@@ -15,7 +15,7 @@ def get_application() -> FastAPI:
 
     application.add_middleware(
         CORSMiddleware,
-        allow_origins=settings.ALLOWED_HOSTS or ["*"],
+        allow_origins=ALLOWED_HOSTS or ["*"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
@@ -30,12 +30,12 @@ def get_application() -> FastAPI:
     # init database models
     register_tortoise(
         application,
-        db_url=settings.DATABASE,
+        db_url=DATABASE,
         generate_schemas=True,
         modules={"models": ["serv.models.images"]}
     )
 
-    application.include_router(api_router, prefix=settings.API_PREFIX)
+    application.include_router(api_router, prefix=API_PREFIX)
 
     return application
 

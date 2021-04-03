@@ -1,44 +1,40 @@
 import logging
 import sys
+from typing import List
 
 from loguru import logger
+from starlette.config import Config
+from starlette.datastructures import CommaSeparatedStrings, Secret
 
-import secrets
-from typing import List, Optional
-from pydantic import BaseSettings, HttpUrl
 from serv.core.logging import InterceptHandler
 
+API_PREFIX = "/api"
 
-class Settings(BaseSettings):
-    API_PREFIX: str = "/api/v1"
-    DEBUG: bool = False
-    SECRET_KEY: str = secrets.token_urlsafe(32)
+JWT_TOKEN_PREFIX = "Token"
+VERSION = "0.0.1"
 
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
+config = Config(".env")
 
-    PROJECT_NAME: str = "Image Serv"
-    JWT_TOKEN_PREFIX: str = "Token"
-    VERSION: str = "0.0.1"
-    SENTRY_DSN: Optional[HttpUrl] = None
+DEBUG: bool = config("DEBUG", cast=bool, default=True)
 
-    DATABASE: str = "sqlite://:memory:" if DEBUG else "postgres://postgres:postgres@localhost/postgres"
+# DATABASE
+DATABASE: str = config("DB_CONNECTION", cast=str, default="sqlite://./test.db")
 
-    ALLOWED_HOSTS: List[str] = [""]
-    STORE_PATH: str = "/data/images"
+SECRET_KEY: Secret = config("SECRET_KEY", cast=Secret, default="Secret")
 
-    class Config:
-        case_sensitive = True
+PROJECT_NAME: str = config("PROJECT_NAME", default="FastAPI example application")
+ALLOWED_HOSTS: List[str] = config(
+    "ALLOWED_HOSTS",
+    cast=CommaSeparatedStrings,
+    default="",
+)
 
-settings = Settings()
+# store path
+STORE_PATH: str = config("STORE_PATH", cast=str)
 
 # logging configuration
 
-LOGGING_LEVEL = logging.DEBUG if settings.DEBUG else logging.INFO
+LOGGING_LEVEL = logging.DEBUG if DEBUG else logging.INFO
 LOGGERS = ("uvicorn.asgi", "uvicorn.access")
 
 logging.getLogger().handlers = [InterceptHandler()]
-for logger_name in LOGGERS:
-    logging_logger = logging.getLogger(logger_name)
-    logging_logger.handlers = [InterceptHandler(level=LOGGING_LEVEL)]
-
-logger.configure(handlers=[{"sink": sys.stderr, "level": LOGGING_LEVEL}])
