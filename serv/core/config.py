@@ -13,12 +13,13 @@ API_PREFIX = "/api"
 JWT_TOKEN_PREFIX = "Token"
 VERSION = "0.0.1"
 
-config = Config("settings.py")
+config = Config()
 
 DEBUG: bool = config("DEBUG", cast=bool, default=True)
 
 # DATABASE
-DATABASE: str = config("DB_CONNECTION", cast=str, default="sqlite://./test.db")
+# DATABASE: str = config("DB_CONNECTION", cast=str, default="sqlite://./test.db")
+DATABASE: str = config("DB_CONNECTION", cast=str, default="postgres://postgres:postgres@postgres/postgres")
 
 SECRET_KEY: Secret = config("SECRET_KEY", cast=Secret, default="Secret")
 
@@ -26,11 +27,11 @@ PROJECT_NAME: str = config("PROJECT_NAME", default="FastAPI example application"
 ALLOWED_HOSTS: List[str] = config(
     "ALLOWED_HOSTS",
     cast=CommaSeparatedStrings,
-    default="",
+    default="*",
 )
 
 # store path
-STORE_PATH: str = config("STORE_PATH", cast=str)
+STORE_PATH: str = config("STORE_PATH", cast=str, default="/data/images")
 
 # logging configuration
 
