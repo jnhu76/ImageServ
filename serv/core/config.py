@@ -13,7 +13,7 @@ API_PREFIX = "/api"
 JWT_TOKEN_PREFIX = "Token"
 VERSION = "0.0.1"
 
-config = Config(".env")
+config = Config("settings.py")
 
 DEBUG: bool = config("DEBUG", cast=bool, default=True)
 
