@@ -17,17 +17,13 @@ async def test_upload():
     return {"msg": "hello to upload"}
 
 
-@router.post("", status_code=201, response_model=List[Image_Info_Pydantic])
-async def create_images(files: List[UploadFile] = File(...)):
-    images = []
-    for f in files:
-        file_hash = get_md5(f.file)
-        image = await Images.get_or_none(hash=file_hash)
-        if image:
-            images.append(await Image_Info_Pydantic.from_tortoise_orm(image))
-        else:
-            images.append(await Image_Info_Pydantic.from_tortoise_orm(await save_image(f, file_hash)))
-    return images
+@router.post("", status_code=201, response_model=Image_Info_Pydantic)
+async def create_images(file: UploadFile = File(...)):
+    file_hash = get_md5(file.file)
+    image = await Images.get_or_none(hash=file_hash)
+    if not image:
+        image = await Image_Info_Pydantic.from_tortoise_orm(await save_image(file, file_hash))
+    return image
 
 
 async def save_image(file: UploadFile, file_hash: str):
