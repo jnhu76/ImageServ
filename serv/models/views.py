@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import BaseModel
 from tortoise.contrib.pydantic import pydantic_model_creator
 
-from app.models.images import Images
+from serv.models.images import Images
 
 Image_Pydantic = pydantic_model_creator(Images, name="Image")
 ImageCreate_Pydantic = pydantic_model_creator(Images, name="ImageCreate", exclude_readonly=True)

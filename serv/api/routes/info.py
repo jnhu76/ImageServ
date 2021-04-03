@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 
-from app.models.images import Images
-from app.models.views import Image_Info_Pydantic
+from serv.models.images import Images
+from serv.models.views import Image_Info_Pydantic
 
 router = APIRouter()
 

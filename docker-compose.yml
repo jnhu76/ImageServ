@@ -13,6 +13,8 @@ services:
             - postgres
         volumes: 
             - ~/imageserv_data:/data/images
+        environment:
+            MODULE_NAME: serv.main
     postgres:
         restart: always
         image: postgres:13

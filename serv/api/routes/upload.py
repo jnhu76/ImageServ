@@ -3,11 +3,11 @@ from typing import List
 
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
-from app.core.config import settings
-from app.models.images import Images
-from app.models.views import Image_Info_Pydantic
-from app.services.processing import get_info
-from app.services.utils import get_md5, get_unique_name, save_file
+from serv.core.config import settings
+from serv.models.images import Images
+from serv.models.views import Image_Info_Pydantic
+from serv.services.processing import get_info
+from serv.services.utils import get_md5, get_unique_name, save_file
 
 router = APIRouter()
 

@@ -3,7 +3,7 @@ from typing import IO, Dict, Optional
 
 from PIL import Image, ImageFilter
 
-from app.core.config import settings
+from serv.core.config import settings
 
 
 def resize(image: Image.Image, mode: int = 1, width: Optional[int] = -1, height: Optional[int] = -1) -> Image.Image:

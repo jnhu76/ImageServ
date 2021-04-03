@@ -4,10 +4,10 @@ from starlette.exceptions import HTTPException
 from starlette.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import register_tortoise
 
-from app.api.errors import http422_error_handler, http_error_handler
-from app.api.routes.api import router as api_router
-from app.core.config import settings
-from app.core.events import create_start_app_handler, create_stop_app_handler
+from serv.api.errors import http422_error_handler, http_error_handler
+from serv.api.routes.api import router as api_router
+from serv.core.config import settings
+from serv.core.events import create_start_app_handler, create_stop_app_handler
 
 
 def get_application() -> FastAPI:
@@ -32,7 +32,7 @@ def get_application() -> FastAPI:
         application,
         db_url=settings.DATABASE,
         generate_schemas=True,
-        modules={"models": ["app.models.images"]}
+        modules={"models": ["serv.models.images"]}
     )
 
     application.include_router(api_router, prefix=settings.API_PREFIX)

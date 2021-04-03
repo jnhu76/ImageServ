@@ -5,7 +5,7 @@ from typing import IO
 
 import aiofiles
 
-from app.core.config import settings
+from serv.core.config import settings
 
 
 def get_md5(file: IO) -> str:
