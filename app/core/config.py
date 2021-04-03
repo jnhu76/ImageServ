@@ -6,7 +6,7 @@ from loguru import logger
 import secrets
 from typing import List, Optional
 from pydantic import BaseSettings, HttpUrl
-from serv.core.logging import InterceptHandler
+from app.core.logging import InterceptHandler
 
 
 class Settings(BaseSettings):

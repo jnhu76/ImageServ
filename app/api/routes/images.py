@@ -3,10 +3,10 @@ import io
 from fastapi import APIRouter, HTTPException
 from starlette.responses import StreamingResponse
 
-from serv.models.images import Images
-from serv.models.views import Image_Pydantic
-from serv.services.processing import (get_image_obj, resize, rotate, blur,
-                                      grey, save_image, set_format)
+from app.models.images import Images
+from app.models.views import Image_Pydantic
+from app.services.processing import (get_image_obj, resize, rotate, blur,
+                                     grey, save_image, set_format)
 
 
 router = APIRouter()

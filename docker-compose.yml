@@ -4,7 +4,7 @@ services:
     serv:
         restart: always
         image: fred1653/imageserv
-        container_name: serv
+        container_name: app
         depends_on: 
             - postgres
         ports:

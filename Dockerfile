@@ -12,4 +12,4 @@ COPY ./pyproject.toml ./poetry.lock* /app/
 
 RUN poetry install --no-root --no-dev
 
-COPY serv /app
+COPY app /app

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from serv.api.routes import images, info, upload
+from app.api.routes import images, info, upload
 
 router = APIRouter()
 
