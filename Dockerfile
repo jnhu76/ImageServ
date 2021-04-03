@@ -5,10 +5,6 @@ ENV PYTHONUNBUFFERED 1
 EXPOSE 8000
 WORKDIR /serv
 
-
-RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
-RUN  apt-get clean
-
 RUN apt-get update && \
     apt-get install -y --no-install-recommends netcat python3-dev python3-pip && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
