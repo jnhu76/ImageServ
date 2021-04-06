@@ -1,8 +1,8 @@
 import io
-from tempfile import SpooledTemporaryFile
 from typing import IO, Dict, Optional
 
 from wand.image import Image
+from wand.exceptions import ImageError
 
 from serv.core.config import STORE_PATH
 
@@ -27,20 +27,22 @@ def get_info(file: IO) -> Dict:
             "format": img.format,
         }
 
-def process(filename: str, w: int = 0, h: int = 0, r: int = 360,
-               q: int = 75, b: int = 0, g: bool = False, f: str = "PNG") -> io.BytesIO:
+
+def process(filename: str, **kwargs) -> io.BytesIO:
     with Image(filename="{0}/{1}".format(STORE_PATH, filename)) as img:
-        resize(img, w, h)
-        if r != 360:
-            img.rotate(r)
-        if b != 0:
-            img.blur(radius=b)
-        if g:
-            img.colorspace  = 'gray'
-        image_format = set_format(f)
+        try:
+            resize(img, kwargs["width"], kwargs["height"])
+        except ImageError:
+            pass
+        if kwargs["rotate"] % 360 != 0:
+            img.rotate(kwargs["rotate"])
+        if kwargs["blur"] != 0:
+            img.gaussian_blur(sigma=kwargs["blur"])
+        if kwargs["gray"]:
+            img.colorspace = 'gray'
         byte_io = io.BytesIO()
-        img.format = set_format(f)
-        img.compression_quality = q if 0 < q <= 100 else 75
+        img.format = set_format(kwargs["format"])
+        img.compression_quality = kwargs["quality"] if 0 < kwargs["quality"] <= 100 else 75
         img.save(file=byte_io)
         return byte_io
 

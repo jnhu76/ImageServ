@@ -1,5 +1,3 @@
-from typing import Optional
-
 from pydantic import BaseModel
 from tortoise.contrib.pydantic import pydantic_model_creator
 
@@ -11,7 +9,10 @@ Image_Info_Pydantic = pydantic_model_creator(Images, name="ImageInfo", exclude=(
 
 
 class ImageInResponse(BaseModel):
-    name: str
-    rotate: Optional[int]
-    quality: Optional[int]
-    filter: Optional[str]
+    width: int = 0
+    height: int = 0
+    rotate: int = 360
+    quality: int = 75
+    blur: int = 0
+    gray: bool = False
+    format: str = "webp"

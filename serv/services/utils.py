@@ -2,9 +2,7 @@ import hashlib
 import os
 import uuid
 from typing import IO
-
 import aiofiles
-
 from serv.core.config import STORE_PATH
 
 
@@ -26,7 +24,6 @@ async def save_file(file: IO, filename: str) -> bool:
 def get_unique_name(filename: str) -> str:
     _, file_extension = os.path.splitext(filename)
     return uuid.uuid4().hex + file_extension
-
 
 
 async def get_file(filename: str) -> bytes:

@@ -1,5 +1,3 @@
-import io
-
 from fastapi import APIRouter, HTTPException
 from starlette.responses import StreamingResponse
 
@@ -24,6 +22,14 @@ async def get_image(image_hash: str, width: int = 0, height: int = 0,
         img = await Image_Pydantic.from_queryset_single(Images.get(hash=image_hash))
     except Exception as e:
         raise HTTPException(status_code=404, detail="image not found")
-    image = process(img.storename, width, height, rotate, quality, blur, gray, format)
-    image.seek(0)
-    return StreamingResponse(image, media_type="image/{0}".format(format.lower()))
+    img = process(img.storename, **{
+        "width": width,
+        "height": height,
+        "rotate": rotate,
+        "quality": quality,
+        "blur": blur,
+        "gray": gray,
+        "format": format
+    })
+    img.seek(0)
+    return StreamingResponse(img, media_type="image/{0}".format(format.lower()))
