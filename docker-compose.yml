@@ -3,12 +3,12 @@ version: '3'
 services:
     serv:
         restart: always
-        image: fred1653/imageserv
+        image: fred1653/imageserv:v0.2
         container_name: imageserv
         depends_on: 
             - postgres
         ports:
-            - 80:8000
+            - 8000:8000
         links:
             - postgres
         volumes: 
