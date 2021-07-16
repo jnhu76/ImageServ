@@ -131,3 +131,8 @@ dmypy.json
 # IDE
 .vscode
 .idea
+
+# sqlite
+test.db
+test.db-shm
+test.db-wal
