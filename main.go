@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"time"
 
@@ -21,5 +22,6 @@ func main() {
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
+	log.Printf("[info] start http server listening %s", endpoint)
 	s.ListenAndServe()
 }
