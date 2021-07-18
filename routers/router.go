@@ -5,6 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
+	"imageservice/service/upload"
+
 	"imageservice/routers/api"
 )
 
@@ -14,7 +16,9 @@ func InitRouter() *gin.Engine {
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
-	r.StaticFS("/upoad/images", http.Dir())
+	r.StaticFS("/upoad/images", http.Dir(upload.GetImageFullPath()))
+
+	r.POST("/upload", api.UploadImage)
 
 	// api settings.
 
