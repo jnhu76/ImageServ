@@ -15,19 +15,19 @@ func GetSize(f multipart.File) (int, error) {
 	return len(content), err
 }
 
-// GetExt get the file ext
+// GetExt get the file extension
 func GetExt(fileName string) string {
 	return path.Ext(fileName)
 }
 
-// CheckNotExist check if the file exists
+// CheckNotExist check is the file exists
 func CheckNotExist(src string) bool {
 	_, err := os.Stat(src)
 
 	return os.IsNotExist(err)
 }
 
-// CheckPermission check if the file has permission
+// CheckPermission check if the file hah permission
 func CheckPermission(src string) bool {
 	_, err := os.Stat(src)
 
@@ -36,12 +36,11 @@ func CheckPermission(src string) bool {
 
 // IsNotExistMkDir create a directory if it does not exist
 func IsNotExistMkDir(src string) error {
-	if notExist := CheckNotExist(src); notExist == true {
+	if notExist := CheckNotExist(src); notExist {
 		if err := MkDir(src); err != nil {
 			return err
 		}
 	}
-
 	return nil
 }
 
@@ -51,7 +50,6 @@ func MkDir(src string) error {
 	if err != nil {
 		return err
 	}
-
 	return nil
 }
 
@@ -61,11 +59,10 @@ func Open(name string, flag int, perm os.FileMode) (*os.File, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	return f, nil
 }
 
-// MustOpen maximize trying to open the file
+// MustOpen maxsize trying to open the file
 func MustOpen(fileName, filePath string) (*os.File, error) {
 	dir, err := os.Getwd()
 	if err != nil {
@@ -74,7 +71,8 @@ func MustOpen(fileName, filePath string) (*os.File, error) {
 
 	src := dir + "/" + filePath
 	perm := CheckPermission(src)
-	if perm {
+
+	if perm == true {
 		return nil, fmt.Errorf("file.CheckPermission Permission denied src: %s", src)
 	}
 
@@ -85,7 +83,7 @@ func MustOpen(fileName, filePath string) (*os.File, error) {
 
 	f, err := Open(src+fileName, os.O_APPEND|os.O_CREATE|os.O_RDWR, 0644)
 	if err != nil {
-		return nil, fmt.Errorf("fail to open file :%v", err)
+		return nil, fmt.Errorf("Fail to OpenFile :%v", err)
 	}
 
 	return f, nil
