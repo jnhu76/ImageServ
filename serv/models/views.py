@@ -9,10 +9,14 @@ Image_Info_Pydantic = pydantic_model_creator(Images, name="ImageInfo", exclude=(
 
 
 class ImageInResponse(BaseModel):
-    width: int = 0
-    height: int = 0
-    rotate: int = 360
-    quality: int = 75
-    blur: int = 0
-    gray: bool = False
-    format: str = "webp"
+    width: int
+    height: int
+    rotate: int
+    quality: int
+    blur: int
+    gray: bool
+    format: str
+
+
+class ImageInSave(BaseModel):
+    hash: str

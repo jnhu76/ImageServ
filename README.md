@@ -41,6 +41,12 @@
 
 ## Api
 
+学习采用 Thumbor 的api方式，
+
+```bash
+/hmac/trim/AxB:CxD/(adaptative-)(full-)fit-in/-Ex-F/HALIGN/VALIGN/smart/filters:FILTERNAME(ARGUMENT):FILTERNAME(ARGUMENT)/*IMAGE-URI*
+```
+
 | API | Method | Parameters | Description | Request URL | 
 | ---- | ---- | ---- | ---- | ---- |
 | `/api/image` | `GET` | - | connection test. | `http://127.0.0.1:8000/api/image` |
@@ -48,6 +54,14 @@
 | `/api/upload` | `GET` | - | connection test. | `http://127.0.0.1:8000/api/upload` |
 | `/api/upload` | `POST` | image data | upload images. | `curl -X 'POST' 'http://127.0.0.1:8000/api/upload' -H 'accept: application/json' -H 'Content-Type: multipart/form-data' -F 'file=@2.png;type=image/png'` |
 | `/api/info/{image-hash}` | `GET` | - | Get image info. | `http://127.0.0.1:8000/api/info/8bf0ff14f2b3e63bf355aefe9788eb52` |
+
+## Todo_Lists
+
+1. [Bloomfilter](https://www.geeksforgeeks.org/bloom-filters-introduction-and-python-implementation/)
+
+1. API
+
+1. 默认值的value
 
 ## Tests
 
